@@ -1,0 +1,71 @@
+<br>
+<div class="container">
+
+  <% if @favorite_movies.count > 0 %>
+    <h1 class="card text-center"> Favorite Movies</h1>
+  <table class="table">
+    <thead>
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">Year</th>
+      <th scope="col">Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% @favorite_movies.each do |movie| %>
+      <tr>
+        <td><%= movie.name %></td>
+        <td><%= movie.year %></td>
+        <td>
+          <div class="dropdown">
+            <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              ...
+            </a>
+
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+              <%= link_to 'Edit', edit_movie_path(movie), class: 'dropdown-item'  %>
+              <%= link_to 'Show', movie, class: 'dropdown-item' %>
+              <%= link_to 'Delete', movie, method: :delete, data: {confirm: 'Are you sure?!'}, class: 'dropdown-item' %>
+              <%= button_to 'Delete Favorite', favorite_movie_path(movie), method: :patch, class: 'dropdown-item' %>
+            </div>
+          </div>
+        </td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+<%end %>
+  <h1 class="card text-center"> Regular Movies</h1>
+  <table class="table">
+    <thead>
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">Year</th>
+      <th scope="col">Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% @regular_movies.each do |movie| %>
+      <tr>
+        <td><%= movie.name %></td>
+        <td><%= movie.year %></td>
+        <td>
+          <div class="dropdown">
+          <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            ...
+          </a>
+
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+            <%= link_to 'Edit', edit_movie_path(movie), class: 'dropdown-item'  %>
+            <%= link_to 'Show', movie, class: 'dropdown-item' %>
+            <%= link_to 'Delete', movie, method: :delete, data: {confirm: 'Are you sure?!'}, class: 'dropdown-item' %>
+            <%= button_to 'Add Favorite', favorite_movie_path(movie), method: :patch, class: 'dropdown-item' %>
+          </div>
+        </div>
+        </td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+</div>
+
